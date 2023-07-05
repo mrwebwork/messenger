@@ -1,7 +1,7 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const mont = Montserrat({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
   title: "Messenger Clone",
@@ -37,7 +37,7 @@ export default function RootLayout({
           href="../images/favicon-16x16.png"
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={mont.className}>{children}</body>
     </html>
   );
 }
