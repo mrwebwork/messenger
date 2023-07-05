@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Facebook Messenger Clone",
+  title: "Messenger Clone",
   description:
     "A Full Stack Facebook Messenger clone, built with Next.js, React, Tailwind, NextAuth, Pusher, and Cloudinary. It mimics Messenger's UI/UX and features robust backend functionalities",
 };
