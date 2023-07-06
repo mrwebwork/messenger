@@ -1,7 +1,6 @@
 "use client";
 
 import clsx from "clsx";
-import { type } from "os";
 
 interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined;
