@@ -2,6 +2,8 @@
 
 import { useCallback, useState } from "react";
 
+import { BsGithub, BsGoogle } from "react-icons/bs";
+
 import Button from "@/app/components/Button";
 import Input from "@/app/components/inputs/Input";
 import AuthSocialButton from "./AuthSocialButton";
@@ -44,12 +46,12 @@ const AuthForm = () => {
     if (variant === "LOGIN") {
       //* NextAuth SignIn
     }
+  };
 
-    const socialAction = (action: string) => {
-      setIsLoading(true);
+  const socialAction = (action: string) => {
+    setIsLoading(true);
 
-      //* NextAuth Social SignIn
-    };
+    //* NextAuth Social SignIn
   };
 
   return (
@@ -74,7 +76,7 @@ const AuthForm = () => {
       >
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {variant === "REGISTER" && (
-            <Input id="name" label="name" errors={errors} register={register} />
+            <Input id="name" label="Name" errors={errors} register={register} />
           )}
           <Input
             id="email"
@@ -116,7 +118,25 @@ const AuthForm = () => {
           </div>
 
           <div className="mt-6 flex gap-2">
-            <AuthSocialButton />
+            <AuthSocialButton
+              icon={BsGithub}
+              onClick={() => socialAction("github")}
+            />
+            <AuthSocialButton
+              icon={BsGoogle}
+              onClick={() => socialAction("google")}
+            />
+          </div>
+        </div>
+
+        <div className="flex gap-2 justify-center text-sm mt-6 px-2 text-gray-500">
+          <div>
+            {variant === "LOGIN"
+              ? "Don't have an account?"
+              : "Already have an account?"}
+          </div>
+          <div onClick={toggleVariant} className="underline cursor-pointer">
+            {variant === "LOGIN" ? "Create an account" : "Sign in"}
           </div>
         </div>
       </div>
