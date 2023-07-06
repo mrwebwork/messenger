@@ -90,7 +90,7 @@ const AuthForm = () => {
             register={register}
           />
           <div>
-            <Button>Submit</Button>
+            <Button>{variant === "LOGIN" ? "Sign in" : "REGISTER"}</Button>
           </div>
         </form>
       </div>
