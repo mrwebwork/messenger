@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AuthForm from "./components/AuthForm";
 
 export default function Home() {
   return (
@@ -32,7 +33,7 @@ export default function Home() {
 
         <h2
           className="
-        mt-6
+        my-6
         text-center
         text-3xl
         font-bold
@@ -43,7 +44,7 @@ export default function Home() {
           Sign in to your account
         </h2>
       </div>
-      {/* //TODO AuthForm */}
+      <AuthForm />
     </div>
   );
 }
