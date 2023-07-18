@@ -21,3 +21,5 @@ const useConversation = () => {
     [conversationId, isOpen]
   );
 };
+
+export default useConversation;
