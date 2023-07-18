@@ -1,5 +1,8 @@
 import "./globals.css";
+
 import { Montserrat } from "next/font/google";
+
+import ToasterContext from "./context/ToasterContext";
 
 const mont = Montserrat({ subsets: ["latin"], display: "swap" });
 
@@ -37,7 +40,10 @@ export default function RootLayout({
           href="../images/favicon-16x16.png"
         />
       </head>
-      <body className={mont.className}>{children}</body>
+      <body className={mont.className}>
+        <ToasterContext />
+        {children}
+      </body>
     </html>
   );
 }
