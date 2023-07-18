@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 
@@ -14,13 +14,23 @@ import Button from "@/app/components/Button";
 import Input from "@/app/components/inputs/Input";
 import AuthSocialButton from "./AuthSocialButton";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+
+import { useRouter } from "next/navigation";
 
 type Variant = "LOGIN" | "REGISTER";
 
 const AuthForm = () => {
+  const session = useSession();
+  const router = useRouter();
   const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      router.push("/users");
+    }
+  }, [session?.status, router]);
 
   const toggleVariant = useCallback(() => {
     if (variant === "LOGIN") {
@@ -48,6 +58,7 @@ const AuthForm = () => {
     if (variant === "REGISTER") {
       axios
         .post("/api/register", data)
+        .then(() => signIn("credentials", data))
         .catch(() => toast.error("Please enter valid credentials"))
         .finally(() => setIsLoading(false));
     }
@@ -56,36 +67,40 @@ const AuthForm = () => {
       signIn("credentials", {
         ...data,
         redirect: false,
-      }).then((callback) => {
-        //! Error handling
-        if (callback?.error) {
-          toast.error("Invalid credentials!");
-        }
+      })
+        .then((callback) => {
+          //! Error handling
+          if (callback?.error) {
+            toast.error("Invalid credentials!");
+          }
 
-        //* Success handling
-        if (callback?.ok && !callback?.error) {
-          toast.success("Logged in successfully!");
-        }
-      }).finally(() => setIsLoading(false));
+          //* Success handling
+          if (callback?.ok && !callback?.error) {
+            toast.success("Logged in successfully!");
+            router.push("/users");
+          }
+        })
+        .finally(() => setIsLoading(false));
     }
   };
 
-  //* Social Login for github and google 
+  //* Social Login for github and google
   const socialAction = (action: string) => {
     setIsLoading(true);
 
     signIn(action, { redirect: false })
-    .then((callback) => {
-      //! Error handling
-      if (callback?.error) {
-        toast.error("Something went wrong!");
-      }
-      //* Success handling
-      if (callback?.ok && !callback?.error) {
-        toast.success("Logged in successfully!");
-      }
-    }).finally(() => setIsLoading(false));
-
+      .then((callback) => {
+        //! Error handling
+        if (callback?.error) {
+          toast.error("Something went wrong!");
+        }
+        //* Success handling
+        if (callback?.ok && !callback?.error) {
+          toast.success("Logged in successfully!");
+          router.push("/users");
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
