@@ -15,7 +15,7 @@ const Avatar: React.FC<AvatarProps> = ({ user }) => {
         {/* Enter place holder image here */}
         <Image
           alt="Avatar Image"
-          src={user?.image || "/images/logo.png"}
+          src={user?.image || "/images/account-placholder.png"}
           fill
         />
       </div>
