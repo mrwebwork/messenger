@@ -13,6 +13,7 @@ import clsx from "clsx";
 
 import { FullConversationType } from "@/app/types";
 import useOtherUser from "@/app/hooks/useOtherUser";
+import AvatarGroup from "@/app/components/AvatarGroup";
 import Avatar from "@/app/components/Avatar";
 
 interface ConversationBoxProps {
@@ -81,7 +82,12 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         selected ? "bg-neutral-100" : "bg-white"
       )}
     >
-      <Avatar user={otherUser} />
+      {/* //* Dynamically render the avatar images based on group or duo chats  */}
+      {data.isGroup ? (
+        <AvatarGroup users={data.users} />
+      ) : (
+        <Avatar user={otherUser} />
+      )}
       <div className="min-w-0 flex-1">
         <div className="focus:outline-none">
           <div className="flex justify-between items-center mb-1">

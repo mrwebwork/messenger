@@ -15,7 +15,6 @@ import Input from "../inputs/Input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { toast } from "react-hot-toast";
-import { error } from "console";
 import Image from "next/image";
 import { CldUploadButton } from "next-cloudinary";
 
@@ -102,7 +101,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                       src={
                         image ||
                         currentUser.image ||
-                        "/images/account-placeholder.png"
+                        "/images/account-placholder.png"
                       }
                     />
                     <CldUploadButton

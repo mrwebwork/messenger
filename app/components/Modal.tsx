@@ -42,7 +42,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                 <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block z-10">
                   <button className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                     <span className="sr-only">Close</span>
-                    <IoClose size={28} className="h-6 w-6" />
+                    <IoClose size={28} className="h-6 w-6" onClick={onClose} />
                   </button>
                 </div>
                 {children}
