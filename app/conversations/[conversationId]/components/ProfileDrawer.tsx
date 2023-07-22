@@ -4,7 +4,7 @@ import { useState, useMemo, Fragment } from "react";
 
 import { User, Conversation } from "@prisma/client";
 
-import Modal from "@/app/components/Modal";
+import ConfirmModal from "./ConfirmModal";
 import Avatar from "@/app/components/Avatar";
 import useOtherUser from "@/app/hooks/useOtherUser";
 
@@ -28,7 +28,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
   data,
 }) => {
   const otherUser = useOtherUser(data);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [confirmOpen, setconfirmOpen] = useState(false);
 
   const joinedDate = useMemo(() => {
     return format(new Date(otherUser.createdAt), "PP");
@@ -47,16 +47,12 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
 
   return (
     <>
-      <Modal
-        isOpen={isModalOpen}
+      <ConfirmModal
+        isOpen={confirmOpen}
         onClose={() => {
-          setIsModalOpen(false);
+          setconfirmOpen(false);
         }}
-      >
-        <div className="bg-white p-5">
-          <p>Hello Modal!</p>
-        </div>
-      </Modal>
+      />
       <Transition.Root show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-50" onClose={onClose}>
           <Transition.Child
@@ -139,7 +135,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                           <div className="flex gap-10 my-8">
                             <div
                               onClick={() => {
-                                setIsModalOpen(true);
+                                setconfirmOpen(true);
                               }}
                               className="flex flex-col gap-3 items-center cursor-pointer hover:opacity-75"
                             >
