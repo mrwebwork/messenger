@@ -50,8 +50,8 @@ export async function POST(request: Request, { params }: { params: IParams }) {
         id: lastMessage.id,
       },
       include: {
-        seen: true,
         sender: true,
+        seen: true,
       },
       data: {
         seen: {
@@ -61,6 +61,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
         },
       },
     });
+    return NextResponse.json(updatedMessage);
   } catch (error: any) {
     console.log(error, "Error on Messages Seen");
     return new NextResponse("Internal Error", { status: 500 });
