@@ -24,6 +24,7 @@
     "eslint-config-next": "13.4.8",
     "next": "13.4.8",
     "next-auth": "^4.22.1",
+    "next-cloudinary": "^4.15.0",
     "next-superjson-plugin": "^0.5.9",
     "postcss": "8.4.24",
     "react": "18.2.0",
