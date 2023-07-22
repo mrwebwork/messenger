@@ -1,9 +1,11 @@
 "use client";
 
-import { useMemo, Fragment } from "react";
+import { useState, useMemo, Fragment } from "react";
 
 import { User, Conversation } from "@prisma/client";
 
+import Modal from "@/app/components/Modal";
+import Avatar from "@/app/components/Avatar";
 import useOtherUser from "@/app/hooks/useOtherUser";
 
 import { format } from "date-fns";
@@ -11,7 +13,6 @@ import { format } from "date-fns";
 import { Transition, Dialog } from "@headlessui/react";
 
 import { IoClose, IoTrash } from "react-icons/io5";
-import Avatar from "@/app/components/Avatar";
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -27,6 +28,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
   data,
 }) => {
   const otherUser = useOtherUser(data);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const joinedDate = useMemo(() => {
     return format(new Date(otherUser.createdAt), "PP");
@@ -45,7 +47,16 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
 
   return (
     <>
-      {/* <Modal isOpen /> */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+        }}
+      >
+        <div className="bg-white p-5">
+          <p>Hello Modal!</p>
+        </div>
+      </Modal>
       <Transition.Root show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-50" onClose={onClose}>
           <Transition.Child
@@ -127,7 +138,9 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                           </div>
                           <div className="flex gap-10 my-8">
                             <div
-                              onClick={() => {}}
+                              onClick={() => {
+                                setIsModalOpen(true);
+                              }}
                               className="flex flex-col gap-3 items-center cursor-pointer hover:opacity-75"
                             >
                               <div className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center">
