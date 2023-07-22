@@ -64,6 +64,6 @@ export async function POST(request: Request) {
   } catch (error: any) {
     //! Console Log Error
     console.log(error, "Error Messages");
-    return new NextResponse("Internal Error", { status: 500 });
+    return new NextResponse("Internal Error on Messages!", { status: 500 });
   }
 }
