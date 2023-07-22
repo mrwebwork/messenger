@@ -1,10 +1,14 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Montserrat } from "next/font/google";
+
+import ToasterContext from "./context/ToasterContext";
+import AuthContext from "./context/AuthContext";
+
+const mont = Montserrat({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
-  title: "Facebook Messenger Clone",
+  title: "Messenger Clone",
   description:
     "A Full Stack Facebook Messenger clone, built with Next.js, React, Tailwind, NextAuth, Pusher, and Cloudinary. It mimics Messenger's UI/UX and features robust backend functionalities",
 };
@@ -37,7 +41,12 @@ export default function RootLayout({
           href="../images/favicon-16x16.png"
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={mont.className}>
+        <AuthContext>
+          <ToasterContext />
+          {children}
+        </AuthContext>
+      </body>
     </html>
   );
 }
