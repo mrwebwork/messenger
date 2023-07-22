@@ -13,6 +13,7 @@ import useOtherUser from "@/app/hooks/useOtherUser";
 
 import { HiChevronLeft } from "react-icons/hi";
 import { HiEllipsisHorizontal } from "react-icons/hi2";
+import { set } from "date-fns";
 
 interface HeaderProps {
   conversation: Conversation & {
@@ -77,7 +78,9 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
         </div>
         <HiEllipsisHorizontal
           size={24}
-          onClick={() => {}}
+          onClick={() => {
+            setDrawerOpen(true);
+          }}
           className="text-sky-500 hover:text-sky-600 cursor-pointer transition "
         />
       </div>
