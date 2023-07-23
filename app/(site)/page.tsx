@@ -25,10 +25,11 @@ export default function Home() {
       >
         <Image
           alt="Logo"
-          height={48}
           width={48}
+          height={48}
+          sizes="(max-width: 375px) 100vw"
           src="/images/logo.png"
-          className="mx-auto w-auto"
+          className="mx-auto"
         />
 
         <h2

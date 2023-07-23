@@ -95,9 +95,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                   <div className="mt-2 flex items-center gap-x-3">
                     <Image
                       alt="Account Profile Picture"
-                      width="58"
-                      height="58"
+                      sizes="(max-width: 375px) 100vw"
                       className="rounded-full"
+                      width={48}
+                      height={48}
                       src={
                         image ||
                         currentUser.image ||
