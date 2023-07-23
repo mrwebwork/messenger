@@ -64,7 +64,8 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
             <Image
               onClick={() => setImageModalOpen(true)}
               alt="Message Image Attachment"
-              sizes="(max-width: 375px) 100vw"
+              width={90}
+              height={90}
               src={data.image}
               className="object-cover cursor-pointer hover:scale-110 transition translate"
             />

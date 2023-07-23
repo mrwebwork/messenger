@@ -97,6 +97,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                       alt="Account Profile Picture"
                       sizes="(max-width: 375px) 100vw"
                       className="rounded-full"
+                      width={48}
+                      height={48}
                       src={
                         image ||
                         currentUser.image ||
