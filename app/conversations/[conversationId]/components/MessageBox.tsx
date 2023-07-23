@@ -28,8 +28,6 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
     .map((user) => user.name)
     .join(", ");
 
-  //* Allan, Story, Lebron
-
   const container = clsx("flex gap-3 p-4", isOwn && "justify-end");
 
   const body = clsx("flex flex-col gap-2", isOwn && "items-end");
